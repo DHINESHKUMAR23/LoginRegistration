@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="12" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+          <Property Name="PinCode" Type="varchar" MaxLength="8" />
+          <Property Name="State" Type="varchar" MaxLength="30" />
+          <Property Name="Country" Type="varchar" MaxLength="20" />
+          <Property Name="Password" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="HighestEducation" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MarsInPercent" Type="int" Nullable="false" />
+          <Property Name="SchoolName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MediumOfEducation" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BoardOfEducation" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PreferredCourse1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PreferredCourse2" Type="varchar" MaxLength="50" />
+          <Property Name="preferredCourse" Type="varchar" MaxLength="50" />
+          <Property Name="GuardianName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GuardianAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GuardianContact" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateOfApplication" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentDB.dbo.Courses' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseId" />
+            <PropertyRef Name="Degree" />
+            <PropertyRef Name="Specialization" />
+            <PropertyRef Name="DurationInYears" />
+            <PropertyRef Name="Min_APS" />
+            <PropertyRef Name="DateOfAddition" />
+          </Key>
+          <Property Name="CourseId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Degree" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Specialization" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DurationInYears" Type="int" Nullable="false" />
+          <Property Name="Min_APS" Type="int" Nullable="false" />
+          <Property Name="DateOfAddition" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentName" Type="varchar" MaxLength="20" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="12" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+          <Property Name="PinCode" Type="varchar" MaxLength="8" />
+          <Property Name="State" Type="varchar" MaxLength="30" />
+          <Property Name="Country" Type="varchar" MaxLength="20" />
+          <Property Name="Password" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityContainer Name="StudentDBModelStoreContainer">
+          <EntitySet Name="AdminDetails" EntityType="Self.AdminDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentDetails" EntityType="Self.StudentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Courses].[CourseId] AS [CourseId], 
+    [Courses].[Degree] AS [Degree], 
+    [Courses].[Specialization] AS [Specialization], 
+    [Courses].[DurationInYears] AS [DurationInYears], 
+    [Courses].[Min_APS] AS [Min_APS], 
+    [Courses].[DateOfAddition] AS [DateOfAddition]
+    FROM [dbo].[Courses] AS [Courses]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HighestEducation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MarsInPercent" Type="Int32" Nullable="false" />
+          <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MediumOfEducation" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BoardOfEducation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PreferredCourse1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PreferredCourse2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="preferredCourse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GuardianName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GuardianAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GuardianContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfApplication" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="StudentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="CourseId" />
+            <PropertyRef Name="Degree" />
+            <PropertyRef Name="Specialization" />
+            <PropertyRef Name="DurationInYears" />
+            <PropertyRef Name="Min_APS" />
+            <PropertyRef Name="DateOfAddition" />
+          </Key>
+          <Property Name="CourseId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Specialization" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DurationInYears" Type="Int32" Nullable="false" />
+          <Property Name="Min_APS" Type="Int32" Nullable="false" />
+          <Property Name="DateOfAddition" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="StudentDBEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminDetails" EntityType="Self.AdminDetail" />
+          <EntitySet Name="Applications" EntityType="Self.Application" />
+          <EntitySet Name="StudentDetails" EntityType="Self.StudentDetail" />
+          <EntitySet Name="Courses" EntityType="Self.Cours" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudentDBModelStoreContainer" CdmEntityContainer="StudentDBEntities4">
+          <EntitySetMapping Name="AdminDetails">
+            <EntityTypeMapping TypeName="StudentDBModel.AdminDetail">
+              <MappingFragment StoreEntitySet="AdminDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="StudentDBModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="HighestEducation" ColumnName="HighestEducation" />
+                <ScalarProperty Name="MarsInPercent" ColumnName="MarsInPercent" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="MediumOfEducation" ColumnName="MediumOfEducation" />
+                <ScalarProperty Name="BoardOfEducation" ColumnName="BoardOfEducation" />
+                <ScalarProperty Name="PreferredCourse1" ColumnName="PreferredCourse1" />
+                <ScalarProperty Name="PreferredCourse2" ColumnName="PreferredCourse2" />
+                <ScalarProperty Name="preferredCourse" ColumnName="preferredCourse" />
+                <ScalarProperty Name="GuardianName" ColumnName="GuardianName" />
+                <ScalarProperty Name="GuardianAddress" ColumnName="GuardianAddress" />
+                <ScalarProperty Name="GuardianContact" ColumnName="GuardianContact" />
+                <ScalarProperty Name="DateOfApplication" ColumnName="DateOfApplication" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentDetails">
+            <EntityTypeMapping TypeName="StudentDBModel.StudentDetail">
+              <MappingFragment StoreEntitySet="StudentDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="StudentDBModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+                <ScalarProperty Name="DurationInYears" ColumnName="DurationInYears" />
+                <ScalarProperty Name="Min_APS" ColumnName="Min_APS" />
+                <ScalarProperty Name="DateOfAddition" ColumnName="DateOfAddition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
